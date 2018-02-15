@@ -1,11 +1,11 @@
 from microbit import *
 
-# Kun kutsutaan write_angle, piirretäänkö kulma myös LED-näytölle?
+# Kun kutsutaan write_angle, piirretaanko kulma myos LED-naytolle?
 # (Testaamista varten kannattaa olla True.)
 DRAW_ANGLE_ON_LEDS = True
 
 def main():
-    # Tämä ohjelma pyörittää servoa edes takaisin. Pieni servodemo.
+    # Tama ohjelma pyorittaa servoa edes takaisin. Pieni servodemo.
     write_angle(0)
     sleep(500)
     write_angle(90)
@@ -21,9 +21,9 @@ def main():
     write_angle(180)
 
 # Servon ohjausfunktiot
-# Pin micro:bitissä johon servo pistetään kiinni
+# Pin micro:bitissa johon servo pistetaan kiinni
 SERVO_PIN = pin0
-# Servon mahdollinen pyörimiskulma
+# Servon mahdollinen pyorimiskulma
 SERVO_ANGLE = 180
 # Servon maksimi signaalin pituus
 SERVO_MAX_MCS = 2400
@@ -37,7 +37,7 @@ def write_microseconds(mcs):
     SERVO_PIN.write_analog(duty) # Turn the servo
     SERVO_PIN.write_digital(0)   # Se the pin off
 
-# Tätä kutsumalla on tarkoitus ohjata servoa, yllä on tekninen puoli
+# Tata kutsumalla on tarkoitus ohjata servoa, ylla on tekninen puoli
 def write_angle(degrees):
     degrees = degrees % 360
 
