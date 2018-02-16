@@ -1,7 +1,14 @@
-# Kytke kaiuttin microbitin pinneihin 0 ja 1.
-import speech
-from microbit import *
+# Tämä ohjelma näyttää hymynaamaa kunnes painetaan nappia, odottaa hetken, ja lausuu kuulokkeissa määrän painalluksia.
 
-while True:
-    speech.say("I am a robot.")
-    sleep(3000)
+# Kytke kaiuttin microbitin pinneihin 0 ja 1.
+import speech # Kerrotaan Pythonille että käytämme puhumisominaisuuksia (ei sisälly alempaan)
+from microbit import * # Kerrotaan Pythonille että käytämme microbitin sisäänrakennettuja muitakin toimintoja
+
+while True: # Aloitetaan toistosilmukka
+    display.show(Image.SMILE) # Näytetään hymynaamaa
+    if button_a.was_pressed(): # Mikäli nappia painettiin...
+        display.clear() # Tyhjennetään ruutu
+        sleep(5000) # Odotetaan 5 sekuntia
+        display.show(Image.MUSIC_QUAVER) # Näytetään musikaalinen kuva, viitaten siihen että micro:bit puhuu nyt
+        painallukset = button_a.get_presses() + 1 # Painalluksien määrään pitää laskea myös se jolla siirryimme tähän if-lausekkeeseen (+ 1)
+        speech.say(str(painallukset)) # micro:bit sanoo luvun, str muuttaa luvun tekstiksi
