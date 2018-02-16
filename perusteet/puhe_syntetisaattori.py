@@ -5,7 +5,7 @@ import speech # Kerrotaan Pythonille että käytämme puhumisominaisuuksia (ei s
 from microbit import * # Kerrotaan Pythonille että käytämme microbitin sisäänrakennettuja muitakin toimintoja
 
 while True: # Aloitetaan toistosilmukka
-    display.show(Image.SMILE) # Näytetään hymynaamaa
+    display.show(Image.HAPPY) # Näytetään hymynaamaa
     if button_a.was_pressed(): # Mikäli nappia painettiin...
         display.clear() # Tyhjennetään ruutu
         sleep(5000) # Odotetaan 5 sekuntia
