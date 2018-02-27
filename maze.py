@@ -1,9 +1,3 @@
-####################################################################################
-# NOTE: This program has very bad variable names and the code is structured in     #
-#       questionable ways. This is due to the memory limitations of the micro:bit, #
-#       which resulted in some required trickery. Thank you for understanding.     #
-####################################################################################
-
 from microbit import display, button_a, button_b, sleep, Image
 from gc import collect, mem_free
 from random import choice
@@ -98,9 +92,9 @@ def main():
         sleep(2000)
 
 
-#############
-# Map stuff #
-#############
+#######
+# Map #
+#######
 cells = []
 g_w = 0
 g_h = 0
