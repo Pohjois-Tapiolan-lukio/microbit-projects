@@ -16,8 +16,9 @@ Tämä kansio sisältää vain Microbittiin liittyvät ohjeet.
 > (vaatii lisätutkimusta: liian suuri pulldown-vastus tuottaa ongelmia
 > `read_digital`-metodin kanssa)
 - Hyppylankoja jne.
-> Voit hyödyntää Raspberryn 40-pinnistä `T-Cobbler`-kaapelia, jos haluat
-> käyttää kytkentäalustaa
+> Voit hyödyntää Raspberryn 40-pinnistä T-Cobbleria, jos haluat
+> käyttää kytkentäalustaa.
+> Tarvitset myös 40-pinnisen kaapelin
 ![](tcobbler.jpg)
 ![](40pincable.jpg)
 
