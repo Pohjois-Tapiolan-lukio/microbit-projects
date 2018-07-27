@@ -1,5 +1,5 @@
 # Gamepad
-Raspberry Pi osuuden löydät [täältä](https://github.com/Pohjois-Tapiolan-lukio/raspberry_pi-projects/tree/master/projects/gamepad#python-sarjaliikennekuuntelija)
+Raspberry Pi osuuden löydät [täältä](https://github.com/Pohjois-Tapiolan-lukio/raspberry_pi-projects/tree/master/projects/gamepad)
 
 ## Yhteenveto
 Tässä projektissa opetetaan Microbitin ja Linux-laitteen välisen
@@ -138,5 +138,3 @@ while True:
 ```
 
 Valmis esimerkkitiedoston kommentteineen löytyy [täältä](gamepad.py)
-
-Nyt voit jatkaa tekemällä [sarjaliikenteen kuuntelijan](https://github.com/Pohjois-Tapiolan-lukio/raspberry_pi-projects/tree/master/projects/gamepad)
