@@ -3,7 +3,7 @@ Raspberry Pi osuuden löydät [täältä](https://github.com/Pohjois-Tapiolan-lu
 
 ## Yhteenveto
 Tässä projektissa opetetaan Microbitin ja Linux-laitteen välisen
-_sarjaliikenne_-kommunikoinnin perusteet.
+_sarjaliikenne_kommunikoinnin perusteet.
 
 Tämä kansio sisältää vain Microbittiin liittyvät ohjeet.
 
@@ -62,6 +62,19 @@ Sarjaliikenteeseen kirjoittaminen tapahtuu `print`-komennolla
 print("Viesti")
 ```
 
+Sarjaliikenteeseen halutaan kirjoittaa jatkuvasti, joten käytetään
+`while`-silmukkaa
+
+```python
+while True:
+    # lue data
+    # koodaa data
+    # tulosta koodattu data
+    # nuku hetki
+```
+> Nukkuminen on hyvin oleellinen osa silmukkaa, että
+> sarjaliikenteen lukija pysyy mukana
+
 #### Datan koodaus
 Sarjaliikenteessä kulkevalla datalla pitää olla formaatii eli koodi
 
@@ -100,3 +113,30 @@ print("luku1:{},luku2:{},luku3:{}".format(luku1, luku2, luku3))
 print("{:03X}{:03X}{:03X}".format(luku1,luku2,luku3))
 ```
 > Vertaa ratkaisun pituutta [Arduinon ratkaisuun](https://github.com/Pohjois-Tapiolan-lukio/arduino-projects/blob/master/gamepad/README.md#koodi)
+
+#### Valmis ohjelma
+Kun kaikki osat ovat valmiita, ne voidaan yhdistää
+valmiiksi ohjelmaksi
+
+While-silmukan koodi voi esimerkiksi näyttää tältä
+```python
+while True:
+    # luetaan data
+    nappi = NAPPI.read_digital()
+    joystick_x = JOYSTICK_X.read_analog()
+    joystick_y = JOYSTICK_X.read_analog()
+    joystick_thumb = JOYSTICK_THUMB.read_digital()
+
+    # koodataan data
+    data = "{},{},{},{}".format(nappi, joystick_x, joystick_y, joystick_thumb)
+
+    # tulostetaan data
+    print(data)
+
+    # nukutaan hetki
+    sleep(15) #ms
+```
+
+Valmis esimerkkitiedoston kommentteineen löytyy [täältä](gamepad.py)
+
+Nyt voit jatkaa tekemällä [sarjaliikenteen kuuntelijan](https://github.com/Pohjois-Tapiolan-lukio/raspberry_pi-projects/tree/master/projects/gamepad)
