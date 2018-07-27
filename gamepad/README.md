@@ -18,6 +18,8 @@ Tämä kansio sisältää vain Microbittiin liittyvät ohjeet.
 - Hyppylankoja jne.
 > Voit hyödyntää Raspberryn 40-pinnistä `T-Cobbler`-kaapelia, jos haluat
 > käyttää kytkentäalustaa
+![](tcobbler.jpg)
+![](40pincable.jpg)
 
 ## Ohjeet
 
