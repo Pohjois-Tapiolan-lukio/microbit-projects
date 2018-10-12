@@ -42,7 +42,7 @@
 #include <BlynkSimpleSerialBLE.h>
 #include <BLEPeripheral.h>
 #include "BLESerial.h"
-#include <Adafruit_Microbit.h>
+//#include <Adafruit_Microbit.h>
 
 #include "Wire.h"
 #include <SparkFun_MAG3110.h>
@@ -51,11 +51,11 @@
 MAG3110 compass = MAG3110();  // The compass chip
 int baseline = 0;          
 
-Adafruit_Microbit_Matrix microbit;
+//Adafruit_Microbit_Matrix microbit;
 
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
-char auth[] = "Your secret token from Blynk app"; 
+char auth[] = "Insert your secret token"; 
 
 
 // Create ble serial instance, parameters are ignored for MicroBit
@@ -69,9 +69,11 @@ BLESerial SerialBLE(0, 0, 0);
 #define DATA_UPDATE_FREQ 4
 
 /*Application */
-#define SPOKES 1
-#define RADIUS 0.311
+
+#define RADIUS 0.311 // units m
 float velocity = 0.0;
+float distance = 0.0;
+float totalDistance = 0.0;
 /***************************************
  * Code starts here, modify with care! *
  ***************************************/
@@ -92,13 +94,11 @@ void setup() {
   Blynk.begin(SerialBLE, auth);
 
   Serial.println("Waiting for connections...");
-  microbit.begin();
-  microbit.clear();
   
   compass.initialize();       // Initializes the compass chip
-  compass.start();            // Puts the sensor in active mode
+  //compass.start();            // Puts the sensor in active mode
   baseline = readStrength();  // Take a baseline reading of magnetic strength
-  delay(500);
+  delay(300);
 
   
 }
@@ -109,7 +109,7 @@ void setup() {
 
 /* Timestamp of the last time polledFrequency was updated */
 unsigned long dataUpdateTime = 0;
-/* How many times the PIN_SENSOR has switched state to HIGH since dataUpdateTime */
+/* How many times the SENSOR has switched state to HIGH since dataUpdateTime */
 int frequencyCounter = 0;
 /* State of the counter for comparison */
 bool lastBlocked = false;
@@ -118,7 +118,7 @@ bool lastBlocked = false;
 void updateFrequencyCounter() {
   /* Read the sensor state */
   bool currentlyBlocked = false;
-  if (abs(readStrength() - baseline) > 15000) {
+  if (abs(readStrength() - baseline) > 10000) {
     currentlyBlocked = true;
   }
   
@@ -136,7 +136,9 @@ void updateFrequencyCounter() {
     polledFrequency = frequencyCounter * DATA_UPDATE_FREQ;
 
   if (millis() - printTime > 1000.0 / DATA_UPDATE_FREQ) {
-    velocity = 2 * 3.1416 * polledFrequency / SPOKES* RADIUS * 3.6;
+    velocity = 2 * 3.1416 * polledFrequency * RADIUS * 3.6;  //units km/h
+    distance = 2*3.1416*RADIUS*polledFrequency;
+    totalDistance += distance;
     printTime = millis();
   }
     /* Reset the frequency counter so it starts counting up again */
@@ -148,6 +150,25 @@ void updateFrequencyCounter() {
 
 
 int readStrength() {
+  if(!compass.isCalibrated()) //If we're not calibrated
+  {
+    if(!compass.isCalibrating()) //And we're not currently calibrating
+    {
+      Serial.println("Entering calibration mode");
+      compass.enterCalMode(); //This sets the output data rate to the highest possible and puts the mag sensor in active mode
+    }
+    else
+    {
+      //Must call every loop while calibrating to collect calibration data
+      //This will automatically exit calibration
+      //You can terminate calibration early by calling mag.exitCalMode();
+      compass.calibrate(); 
+    }
+  }
+  else
+  {
+    Serial.println("Calibrated!");
+  }
   int x, y, z;
   while(!compass.dataReady()) {};   // Wait for data to become available to read
   compass.readMag(&x, &y, &z);      // Read data into variables
@@ -156,14 +177,21 @@ int readStrength() {
   return power;
 }
 
+BLYNK_READ(V0){
+  Blynk.virtualWrite(V0, velocity);
+  }
 
-
+BLYNK_READ(V1){
+  Blynk.virtualWrite(V1, totalDistance);
+  }
+  
 void loop() {
   SerialBLE.poll();
 
   if (SerialBLE) {    // If BLE is connected...
     updateFrequencyCounter();
-    Blynk.virtualWrite(V0, velocity);
+    //Blynk.virtualWrite(V0, velocity);
+    //Blynk.virtualWrite(V1, totalDistance);
     Blynk.run();
   }
 }

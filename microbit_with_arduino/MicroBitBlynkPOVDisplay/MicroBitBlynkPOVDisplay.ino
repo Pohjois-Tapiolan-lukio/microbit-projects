@@ -48,7 +48,7 @@ Adafruit_Microbit_Matrix microbit;
 
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
-char auth[] = "Your secret token from Blynk app"; 
+char auth[] = "yor secret token"; 
 
 
 // Create ble serial instance, parameters are ignored for MicroBit
