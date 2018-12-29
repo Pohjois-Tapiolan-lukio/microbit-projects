@@ -23,7 +23,13 @@ Lähetin microbit lukee kiihtyvyysanturin x,y,z- arvot asteikolta 0 ...1023 ja m
 ## Vastaanotin
 Vastaanotin lukee radioviestinä saapuneita RGB-arvoja ja aktiivisten ledien lukumäärän ja kirjoittaa arvot lednauhaan.
 
-## Blocks
+![](images/img3.png)
+
+![](images/img4.png)
+
+![](images/img5.png)
+
+![](images/img6.png)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
