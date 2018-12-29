@@ -1,6 +1,9 @@
 # Microbit controlled ledStrip
 
-Demossa ohjataan microbitin avulla RGB-led-nauhaa
+Demossa ohjataan microbitin avulla RGB-led-nauhaa.
+
+
+![](images/img7.png)
 
 ## Kytkentä
 
