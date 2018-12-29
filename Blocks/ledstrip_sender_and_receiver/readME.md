@@ -3,7 +3,7 @@
 Demossa ohjataan microbitin avulla RGB-led-nauhaa.
 
 
-![](images/img7.png)
+![](images/img7.jpg)
 
 ## Kytkentä
 
