@@ -18,7 +18,7 @@ radio.config(channel = 50) # Valitse kanava 0-100 väliltä
 
 def to_voltage(val):
     return max(MIN_VOLTAGE, min(MAX_VOLTAGE, val * (MAX_VOLTAGE - MIN_VOLTAGE) + MIN_VOLTAGE))
-
+#This is a comment.
 while True: # Toistetaan ikuisesti
     viesti = radio.receive() # Etsitään ilmasta viesti
 
